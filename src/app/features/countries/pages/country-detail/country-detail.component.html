@@ -1,0 +1,64 @@
+<div class="country-detail">
+
+  <button class="country-detail__back" (click)="goBack()">
+    ← Voltar
+  </button>
+
+  @if (isLoading) {
+    <app-loading-spinner></app-loading-spinner>
+  }
+
+  @if (errorMessage) {
+    <app-error-message
+      [message]="errorMessage"
+      (retry)="loadCountry(country?.cca3 || '')">
+    </app-error-message>
+  }
+
+  @if (country && !isLoading) {
+    <div class="country-detail__content">
+
+      <img
+        class="country-detail__flag"
+        [src]="country.flags.svg"
+        [alt]="country.flags.alt || country.name.common"
+      />
+
+      <div class="country-detail__info">
+        <h1 class="country-detail__name">{{ country.name.common }}</h1>
+        <p class="country-detail__official">{{ country.name.official }}</p>
+
+        <div class="country-detail__grid">
+          <div class="country-detail__block">
+            <p><span class="country-detail__label">Capital:</span> {{ capital }}</p>
+            <p><span class="country-detail__label">Região:</span> {{ country.region }}</p>
+            <p><span class="country-detail__label">Sub-região:</span> {{ country.subregion ?? 'N/A' }}</p>
+            <p><span class="country-detail__label">População:</span> {{ formattedPopulation }}</p>
+          </div>
+          <div class="country-detail__block">
+            <p><span class="country-detail__label">Idiomas:</span> {{ languages }}</p>
+            <p><span class="country-detail__label">Moedas:</span> {{ currencies }}</p>
+          </div>
+        </div>
+
+        @if (borderCountries.length > 0) {
+          <div class="country-detail__borders">
+            <p class="country-detail__label">Países fronteiriços:</p>
+            <div class="country-detail__border-list">
+              @for (border of borderCountries; track border.cca3) {
+                <button
+                  class="country-detail__border-btn"
+                  (click)="goToBorder(border.cca3)">
+                  <img [src]="border.flags.png" [alt]="border.name.common" />
+                  {{ border.name.common }}
+                </button>
+              }
+            </div>
+          </div>
+        }
+
+      </div>
+    </div>
+  }
+
+</div>

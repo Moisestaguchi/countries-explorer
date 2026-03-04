@@ -1,0 +1,11 @@
+<div class="error-message">
+  <mat-icon color="warn">error</mat-icon>
+
+  <p class="error-message__text">
+    {{ message }}
+  </p>
+
+  <button mat-raised-button color="primary" (click)="onRetry()">
+    Tentar novamente
+  </button>
+</div>

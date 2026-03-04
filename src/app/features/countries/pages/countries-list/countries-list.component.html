@@ -1,0 +1,30 @@
+<div class="countries-list">
+
+  <div class="countries-list__filters">
+    <app-search-bar (searchChange)="onSearch($event)"></app-search-bar>
+    <app-region-filter
+      (regionChange)="onRegionChange($event)"
+      (sortChange)="onSortChange($event)">
+    </app-region-filter>
+  </div>
+
+  @if (isLoading) {
+    <app-loading-spinner></app-loading-spinner>
+  }
+
+  @if (errorMessage) {
+    <app-error-message
+      [message]="errorMessage"
+      (retry)="fetchCountries()">
+    </app-error-message>
+  }
+
+  @if (!isLoading && !errorMessage) {
+    <div class="countries-list__grid">
+      @for (country of filteredCountries; track country.cca3) {
+        <app-country-card [country]="country"></app-country-card>
+      }
+    </div>
+  }
+
+</div>

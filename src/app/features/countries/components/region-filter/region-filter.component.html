@@ -1,0 +1,16 @@
+<div class="region-filter">
+  <select class="region-filter__select" (change)="onRegionChange($event)">
+    <option value="">Todas as regiões</option>
+    <option value="Africa">África</option>
+    <option value="Americas">Américas</option>
+    <option value="Asia">Ásia</option>
+    <option value="Europe">Europa</option>
+    <option value="Oceania">Oceania</option>
+  </select>
+
+  <select class="region-filter__select" (change)="onSortChange($event)">
+    <option value="">Ordenar por...</option>
+    <option value="name">Nome</option>
+    <option value="population">População</option>
+  </select>
+</div>

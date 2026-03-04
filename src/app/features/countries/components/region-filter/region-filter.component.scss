@@ -1,0 +1,26 @@
+.region-filter {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  &__select {
+    background-color: var(--card-bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    outline: none;
+    min-width: 160px;
+
+    &:focus {
+      border-color: #4a90e2;
+    }
+
+    option {
+      background-color: var(--card-bg);
+      color: var(--text);
+    }
+  }
+}
